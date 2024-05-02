@@ -1,6 +1,6 @@
 package ejercicio02;
 
-public class Futbolista implements Comparable<Object> {
+public class Futbolista implements Comparable<Futbolista> {
 
 	private String nombre;
 	private int edad;
@@ -46,9 +46,17 @@ public class Futbolista implements Comparable<Object> {
 		return iguales;
 	}
 
-	public int compareTo(Object obj) {
+	@Override
+	public int compareTo(Futbolista fut) {
 		int res = 0;
-		Futbolista fut = (Futbolista) obj;
+
+		if (this.numeroCamiseta < fut.numeroCamiseta) {
+			res = -1;
+		} else if (this.numeroCamiseta > fut.numeroCamiseta) {
+			res = 1;
+		} else {
+			res = this.nombre.compareTo(fut.nombre);
+		}
 
 		return res;
 	}
